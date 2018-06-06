@@ -1,0 +1,43 @@
+{
+    "name": "@coreh/zoop",
+    "version": "0.1.0",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/coreh/zoop.git"
+    },
+    "main": "./dist/index.js",
+    "dependencies": {
+        "@types/jest": "^23.0.0",
+        "fetch-ponyfill": "^6.0.2",
+        "isomorphic-base64": "^1.0.2",
+        "jest": "^23.1.0",
+        "ts-jest": "^22.4.6",
+        "tslib": "^1.9.2"
+    },
+    "devDependencies": {
+        "typescript": "^2.9.1",
+        "tslint": "^5.10.0"
+    },
+    "scripts": {
+        "prepare": "tsc --project . --declaration --outDir dist/",
+        "clean": "rm -f *.js *.d.ts",
+        "lint": "tslint -c tslint.json '**/*.ts' --exclude '**/node_modules/**'",
+        "test": "jest",
+        "coverage": "jest --coverage"
+    },
+    "jest": {
+        "transform": {
+            "^.+\\.tsx?$": "ts-jest"
+        },
+        "testRegex": "(/tests/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
+        "moduleFileExtensions": [
+            "ts",
+            "tsx",
+            "js",
+            "jsx",
+            "json",
+            "node"
+        ]
+    }
+}

@@ -1,0 +1,19 @@
+{
+    "compilerOptions": {
+        "esModuleInterop": true,
+        "lib": [
+            "es2018",
+            "esnext.asynciterable",
+            "dom"
+        ],
+        "target": "es5",
+        "downlevelIteration": true,
+        "strictNullChecks": true,
+        "importHelpers": true,
+    },
+    "exclude": [
+        "dist/*",
+        "examples/*",
+        "tests/*",
+    ]
+}
