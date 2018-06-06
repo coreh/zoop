@@ -19,7 +19,8 @@
 ## Implemented Endpoints
 
 - Marketplace (Retrieve)
-- Buyer (Create, Retrieve)
+- Buyer (Create, Retrieve, List)
+- Transaction (Retrieve, List)
 
 ## License
 

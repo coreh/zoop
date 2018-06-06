@@ -19,7 +19,8 @@
 ## Endpoints Implementados
 
 - Marketplace (Recuperar)
-- Buyer (Criar, Recuperar)
+- Buyer (Criar, Recuperar, Listar)
+- Transaction (Recuperar, Listar)
 
 ## Licença
 
