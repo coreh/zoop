@@ -21,6 +21,29 @@
 npm install @coreh/zoop
 ```
 
+## Uso
+
+```javascript
+import Zoop from '@coreh/zoop';
+
+// Criar Cliente da API
+const zoop = new Zoop(API_KEY);
+
+// Endpoint do Marketplace
+const marketplace = zoop.marketplace(MARKETPLACE_ID);
+
+// Endpoint do Buyer
+const buyer = marketplace.buyer(BUYER_ID);
+
+// Recuperar Informações do Buyer (assíncrono)
+const buyerInfo = await buyer.get();
+
+// Listar Buyers (iterador assíncrono)
+for await (const buyerInfo of marketplace.listBuyers()) {
+    // ...
+}
+```
+
 ## Endpoints Implementados
 
 - Marketplace (Recuperar)
