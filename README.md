@@ -1,8 +1,8 @@
 # zoop - Unofficial Client for Zoop API
 
-[🇧🇷 LEIAME em Português](LEIAME.md)
-
 <p align="center">
+<a href="LEIAME.md">🇧🇷 LEIAME em Português</a>
+<br>
 <a href="https://www.npmjs.com/package/@coreh/zoop"><img src="https://img.shields.io/npm/v/@coreh/zoop.svg"></a>
 <a href="LICENSE"><img src="https://img.shields.io/npm/l/@coreh/zoop.svg"></a>
 <a href="https://travis-ci.org/coreh/zop/"><img src="https://img.shields.io/travis/coreh/zoop.svg"></a>
