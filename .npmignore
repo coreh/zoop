@@ -1,0 +1,7 @@
+lib
+tests
+coverage
+.vscode
+tslint.json
+.travis.yml
+tsconfig.json
