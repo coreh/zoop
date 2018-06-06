@@ -17,7 +17,7 @@
 
 ## Instalação
 
-```
+```bash
 npm install @coreh/zoop
 ```
 
