@@ -1,0 +1,10 @@
+language: node_js
+node_js:
+- '8.11'
+script:
+- npm run prepare
+- npm run lint
+- npm run coverage
+- npx coveralls < ./coverage/lcov.info
+notifications:
+  email: false
