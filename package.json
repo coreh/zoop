@@ -9,9 +9,11 @@
     "main": "./dist/index.js",
     "dependencies": {
         "@types/jest": "^23.0.0",
+        "@types/qs": "^6.5.1",
         "fetch-ponyfill": "^6.0.2",
         "isomorphic-base64": "^1.0.2",
         "jest": "^23.1.0",
+        "qs": "^6.5.2",
         "ts-jest": "^22.4.6",
         "tslib": "^1.9.2"
     },
