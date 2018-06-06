@@ -1,6 +1,7 @@
 import FetchPonyfill from 'fetch-ponyfill';
 
 import { btoa } from 'isomorphic-base64';
+import QueryString from 'qs';
 import { EndpointError } from './endpoint-error';
 
 const { fetch, Headers } = FetchPonyfill();
@@ -32,14 +33,20 @@ export abstract class Endpoint<T> {
             Authorization: `Basic ${btoa(`${this.apiKey}:${this.apiKey}`)}`,
         });
 
-        if (method !== 'GET') {
+        let uri;
+        let body;
+        if (method === 'GET') {
+            uri = this.base + route + '?' + QueryString.stringify(payload);
+        } else {
             headers.set('Content-Type', 'application/json');
+            uri = this.base + route;
+            body = JSON.stringify(payload);
         }
 
-        const response = await fetch(this.base + route, {
+        const response = await fetch(uri, {
             method,
             headers,
-            body: JSON.stringify(payload),
+            body,
         });
 
         if (method === 'GET' && response.status === 404) {
@@ -49,5 +56,17 @@ export abstract class Endpoint<T> {
         await Endpoint.assertSuccess(response);
 
         return await response.json();
+    }
+
+    protected async *iterate<U = T>(payload?: object, route: string = '') {
+        let offset = 0;
+        let data;
+        do {
+            data = await this.request('GET', { ...payload, offset }, route);
+            for (const item of data.items) {
+                yield item as U;
+            }
+            offset += data.limit;
+        } while (data.has_more);
     }
 }
