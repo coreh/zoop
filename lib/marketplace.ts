@@ -1,5 +1,6 @@
 import { Buyer, BuyerCreationInfo, BuyerInfo } from './buyer';
 import { Endpoint } from './endpoint';
+import { Transaction, TransactionCreationInfo, TransactionInfo } from './transaction';
 import { Zoop } from './zoop';
 
 export interface MarketplaceInfo {
@@ -41,8 +42,20 @@ export class Marketplace extends Endpoint<MarketplaceInfo> {
         return new Buyer(this, id);
     }
 
+    transaction(id: string) {
+        return new Transaction(this, id);
+    }
+
     async get() {
         return this.request('GET');
+    }
+
+    async listTransactions(query?: object) {
+        return this.iterate<TransactionInfo>(query, '/transactions');
+    }
+
+    async listBuyers(query?: object) {
+        return this.iterate<BuyerInfo>(query, '/buyers');
     }
 
     async createBuyer(buyerInfo: BuyerCreationInfo) {
