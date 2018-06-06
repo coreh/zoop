@@ -10,11 +10,16 @@
 <a href="https://david-dm.org/coreh/zoop"><img src="https://img.shields.io/david/coreh/zoop.svg?label=dependências"></a>
 </p>
 
-
 ## Sobre
 
 - Isomórfico (Browser, Node, ReactNative)
 - Definições dos tipos em TypeScript
+
+## Instalação
+
+```
+npm install @coreh/zoop
+```
 
 ## Endpoints Implementados
 

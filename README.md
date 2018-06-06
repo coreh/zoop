@@ -16,6 +16,12 @@
 - Isomorphic (Browser, Node, ReactNative)
 - TypeScript type definitions
 
+## Installing
+
+```
+npm install @coreh/zoop
+```
+
 ## Implemented Endpoints
 
 - Marketplace (Retrieve)
