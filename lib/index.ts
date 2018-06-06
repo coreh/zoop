@@ -8,3 +8,11 @@ export * from './zoop';
 import { Zoop } from './zoop';
 
 export default Zoop;
+
+/*
+ * Async iterator polyfill
+ */
+
+if (!(Symbol as any).asyncIterator) {
+    (Symbol as any).asyncIterator = Symbol.for('Symbol.asyncIterator');
+}
