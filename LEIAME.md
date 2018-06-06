@@ -1,7 +1,7 @@
 # zoop - Cliente Não-oficial para API Zoop
 
 <p align="center">
-<a href="README.md">🇺🇸 English README</a>
+🇺🇸 <a href="README.md">English README</a>
 <br><br>
 <a href="https://www.npmjs.com/package/@coreh/zoop"><img src="https://img.shields.io/npm/v/@coreh/zoop.svg"></a>
 <a href="LICENSE"><img src="https://img.shields.io/npm/l/@coreh/zoop.svg?label=licença"></a>
