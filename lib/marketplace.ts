@@ -50,11 +50,11 @@ export class Marketplace extends Endpoint<MarketplaceInfo> {
         return this.request('GET');
     }
 
-    async listTransactions(query?: object) {
+    listTransactions(query?: object) {
         return this.iterate<TransactionInfo>(query, '/transactions');
     }
 
-    async listBuyers(query?: object) {
+    listBuyers(query?: object) {
         return this.iterate<BuyerInfo>(query, '/buyers');
     }
 
