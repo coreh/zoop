@@ -55,7 +55,13 @@ export abstract class Endpoint<T> {
 
         await Endpoint.assertSuccess(response);
 
-        return await response.json();
+        const text = await response.text();
+        try {
+            return JSON.parse(text);
+        } catch (e) {
+            // Work around malformed JSON response with escaped '
+            return JSON.parse(text.replace(/\\\'/g, '\''));
+        }
     }
 
     protected async *iterate<U = T>(payload?: object, route: string = '') {
