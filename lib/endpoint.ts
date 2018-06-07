@@ -72,7 +72,7 @@ export abstract class Endpoint<T> {
             for (const item of data.items) {
                 yield item as U;
             }
-            offset += data.limit;
-        } while (data.has_more);
+            offset += data.items.length;
+        } while (offset < parseInt(data.total, 10));
     }
 }
