@@ -55,10 +55,6 @@ export class Marketplace extends Endpoint<MarketplaceInfo> {
         return this.request('GET');
     }
 
-    listTransactions(query?: object) {
-        return this.iterate<TransactionInfo>(query, '/transactions');
-    }
-
     listBuyers(query?: object) {
         return this.iterate<BuyerInfo>(query, '/buyers');
     }
@@ -67,11 +63,19 @@ export class Marketplace extends Endpoint<MarketplaceInfo> {
         return this.iterate<SellerInfo>(query, '/sellers');
     }
 
+    listTransactions(query?: object) {
+        return this.iterate<TransactionInfo>(query, '/transactions');
+    }
+
     async createBuyer(buyerInfo: BuyerCreationInfo) {
         return this.request('POST', buyerInfo, `/buyers`) as Promise<BuyerInfo>;
     }
 
     async createSeller(buyerInfo: SellerCreationInfo) {
         return this.request('POST', buyerInfo, `/sellers`) as Promise<BuyerInfo>;
+    }
+
+    async createTransaction(transactionInfo: TransactionCreationInfo) {
+        return this.request('POST', transactionInfo, `/transactions`) as Promise<TransactionInfo>;
     }
 }
