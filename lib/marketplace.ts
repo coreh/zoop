@@ -1,5 +1,6 @@
 import { Buyer, BuyerCreationInfo, BuyerInfo } from './buyer';
 import { Endpoint } from './endpoint';
+import { Seller, SellerCreationInfo, SellerInfo } from './seller';
 import { Transaction, TransactionCreationInfo, TransactionInfo } from './transaction';
 import { Zoop } from './zoop';
 
@@ -42,6 +43,10 @@ export class Marketplace extends Endpoint<MarketplaceInfo> {
         return new Buyer(this, id);
     }
 
+    seller(id: string) {
+        return new Seller(this, id);
+    }
+
     transaction(id: string) {
         return new Transaction(this, id);
     }
@@ -58,7 +63,15 @@ export class Marketplace extends Endpoint<MarketplaceInfo> {
         return this.iterate<BuyerInfo>(query, '/buyers');
     }
 
+    listSellers(query?: object) {
+        return this.iterate<SellerInfo>(query, '/sellers');
+    }
+
     async createBuyer(buyerInfo: BuyerCreationInfo) {
         return this.request('POST', buyerInfo, `/buyers`) as Promise<BuyerInfo>;
+    }
+
+    async createSeller(buyerInfo: SellerCreationInfo) {
+        return this.request('POST', buyerInfo, `/sellers`) as Promise<BuyerInfo>;
     }
 }
