@@ -20,7 +20,7 @@ export interface Transaction extends Resource {
     original_amount: string;
     currency: string;
     description: string | null;
-    payment_type: string;
+    payment_type: PaymentType;
     transaction_number: string;
     gateway_authorizer: string;
     app_transaction_uid: string | null;
