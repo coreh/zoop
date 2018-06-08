@@ -1,4 +1,4 @@
-import Zoop, { MarketplaceEndpoint, TransactionCreationInfo } from '../lib';
+import Zoop, { BankAccountTokenCreationInfo, MarketplaceEndpoint, TransactionCreationInfo } from '../lib';
 
 jest.setTimeout(20_000);
 
@@ -8,6 +8,7 @@ const TEST_MARKETPLACE_ID = '3249465a7753536b62545a6a684b0000';
 const TEST_BUYER_ID = '19355ed168914b57b564e23ce41b48c3';
 const TEST_SELLER_ID = '4bd9e003c1b143d9b7dfc1fd04d43ef9';
 const TEST_TRANSACTION_ID = '01ee71b399144a20822ea93c965974d3';
+const TEST_TOKEN_ID = 'fa884dfa65c243dea173f84d9d33773b';
 const TEST_BUYER_CREATION_INFO = {
     first_name: 'Tester',
     last_name: 'McTester',
@@ -28,6 +29,21 @@ const TEST_TRANSACTION_BOLETO_CREATION_INFO: TransactionCreationInfo = {
     currency: 'BRL',
     on_behalf_of: TEST_SELLER_ID,
     payment_type: 'boleto',
+};
+const TEST_CARD_TOKEN_CREATION_INFO = {
+    card_number: '5356066320271893',
+    expiration_month: '12',
+    expiration_year: '2025',
+    holder_name: 'Card McHoldername',
+    security_code: '123',
+};
+const TEST_BANK_ACCOUNT_TOKEN_CREATION_INFO: BankAccountTokenCreationInfo = {
+    bank_code: '001',
+    routing_number: '1234',
+    account_number: '123456',
+    holder_name: 'Tester McTester',
+    taxpayer_id: '167.784.818-97',
+    type: 'checking',
 };
 
 let zoop: Zoop;
@@ -140,5 +156,30 @@ describe('transaction', () => {
                 break;
             }
         }
+    });
+});
+
+describe('token', () => {
+    describe('token creation', () => {
+        it('should create card token', async () => {
+            const tokenInfo = await marketplace.createCardToken(TEST_CARD_TOKEN_CREATION_INFO);
+            expect(tokenInfo).toBeDefined();
+            expect(tokenInfo).toBeInstanceOf(Object);
+            expect(typeof tokenInfo.id).toBe('string');
+        });
+
+        it('should create bank account token', async () => {
+            const tokenInfo = await marketplace.createBankAccountToken(TEST_BANK_ACCOUNT_TOKEN_CREATION_INFO);
+            expect(tokenInfo).toBeDefined();
+            expect(tokenInfo).toBeInstanceOf(Object);
+            expect(typeof tokenInfo.id).toBe('string');
+        });
+    });
+
+    it('should retrieve token', async () => {
+        const tokenInfo = await marketplace.token(TEST_TOKEN_ID).get();
+        expect(tokenInfo).toBeDefined();
+        expect(tokenInfo).toBeInstanceOf(Object);
+        expect(tokenInfo!.id).toEqual(TEST_TOKEN_ID);
     });
 });

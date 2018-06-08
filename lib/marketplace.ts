@@ -2,6 +2,7 @@ import { Buyer, BuyerCreationInfo, BuyerEndpoint } from './buyer';
 import { Endpoint } from './endpoint';
 import { Resource } from './resource';
 import { Seller, SellerCreationInfo, SellerEndpoint } from './seller';
+import { BankAccountTokenCreationInfo, CardTokenCreationInfo, Token, TokenEndpoint } from './token';
 import { Transaction, TransactionCreationInfo, TransactionEndpoint } from './transaction';
 import { Zoop } from './zoop';
 
@@ -50,6 +51,10 @@ export class MarketplaceEndpoint extends Endpoint<Marketplace> {
         return new TransactionEndpoint(this, id);
     }
 
+    token(id: string) {
+        return new TokenEndpoint(this, id);
+    }
+
     async get() {
         return this.request('GET');
     }
@@ -76,5 +81,13 @@ export class MarketplaceEndpoint extends Endpoint<Marketplace> {
 
     async createTransaction(transactionInfo: TransactionCreationInfo) {
         return this.request('POST', '/transactions', transactionInfo) as Promise<Transaction>;
+    }
+
+    async createCardToken(tokenInfo: CardTokenCreationInfo) {
+        return this.request('POST', '/cards/tokens', tokenInfo) as Promise<Token>;
+    }
+
+    async createBankAccountToken(tokenInfo: BankAccountTokenCreationInfo) {
+        return this.request('POST', '/bank_accounts/tokens', tokenInfo) as Promise<Token>;
     }
 }
