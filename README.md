@@ -49,7 +49,8 @@ for await (const buyerInfo of marketplace.listBuyers()) {
 
 - Marketplace (Retrieve)
 - Buyer (Create, Retrieve, List)
-- Transaction (Retrieve, List)
+- Transaction (Create, Retrieve, List)
+- Seller (Create, Retrieve, List)
 
 ## License
 
