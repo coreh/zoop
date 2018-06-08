@@ -1,9 +1,13 @@
 import Zoop, { Marketplace } from '../lib';
 
+jest.setTimeout(20_000);
+
 const TEST_API_KEY = 'zpk_test_EzCkzFFKibGQU6HFq7EYVuxI';
 const TEST_NONEXISTENT_ID = '87df28a2236e173b45ea8b0d049cf62b';
 const TEST_MARKETPLACE_ID = '3249465a7753536b62545a6a684b0000';
 const TEST_BUYER_ID = '19355ed168914b57b564e23ce41b48c3';
+const TEST_SELLER_ID = '4bd9e003c1b143d9b7dfc1fd04d43ef9';
+const TEST_TRANSACTION_ID = '01ee71b399144a20822ea93c965974d3';
 const TEST_BUYER_CREATION_INFO = {
     first_name: 'Tester',
     last_name: 'McTester',
@@ -19,7 +23,12 @@ const TEST_BUYER_CREATION_INFO = {
         neighborhood: 'Test',
     },
 };
-const TEST_TRANSACTION_ID = '01ee71b399144a20822ea93c965974d3';
+const TEST_TRANSACTION_BOLETO_CREATION_INFO = {
+    amount: '1000',
+    currency: 'BRL',
+    on_behalf_of: TEST_SELLER_ID,
+    payment_type: 'boleto',
+};
 
 let zoop: Zoop;
 let marketplace: Marketplace;
@@ -77,7 +86,36 @@ describe('buyer', () => {
     });
 });
 
+describe('seller', () => {
+    it('should list sellers', async () => {
+        let count = 0;
+
+        for await (const seller of marketplace.listSellers()) {
+            expect(seller).toBeDefined();
+
+            // No need to iterate over all sellers
+            if (++count > 200) {
+                break;
+            }
+        }
+    });
+
+    it('should retrieve seller', async () => {
+        const sellerInfo = await marketplace.seller(TEST_SELLER_ID).get();
+        expect(sellerInfo).toBeDefined();
+        expect(sellerInfo).toBeInstanceOf(Object);
+        expect(sellerInfo!.id).toEqual(TEST_SELLER_ID);
+    });
+});
+
 describe('transaction', () => {
+    describe('transaction creation', () => {
+        it('should create a transaction with boleto payment method', async () => {
+            const transactionInfo = await marketplace.createTransaction(TEST_TRANSACTION_BOLETO_CREATION_INFO);
+            expect(transactionInfo).toBeDefined();
+        });
+    });
+
     it('should retrieve transaction', async () => {
         const transactionInfo = await marketplace.transaction(TEST_TRANSACTION_ID).get();
         expect(transactionInfo).toBeDefined();
