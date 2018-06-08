@@ -12,8 +12,9 @@
 
 ## Sobre
 
-- Isomórfico (Browser, Node, ReactNative)
-- Definições dos tipos em TypeScript
+- **Isomórfico**: Compatível com os ambientes dos Navegadores Web, Node.JS e React Native
+- **Escrito em TypeScript**: Fornecendo verificação de tipo e auto-completar para todos os Endpoints e parâmetros
+- **Baseado em Promises / Async Iterables**: É possível usar a sintaxe `async` e `await` (ES2016) e também `for await` (ES2018).
 
 ## Instalação
 
@@ -46,10 +47,24 @@ for await (const buyerInfo of marketplace.listBuyers()) {
 
 ## Endpoints Implementados
 
-- Marketplace (Recuperar)
-- Buyer (Criar, Recuperar, Listar)
-- Transaction (Criar, Recuperar, Listar)
-- Seller (Criar, Recuperar, Listar)
+- `Marketplace` (Mercado)
+    - Recuperar
+- `Buyer` (Comprador)
+    - Criar
+    - Recuperar
+    - Listar
+- `Transaction` (Transação)
+    - Criar
+    - Recuperar
+    - Listar
+- `Seller` (Vendedor)
+    - Criar
+    - Recuperar
+    - Listar
+- `Token`
+    - Criar Token para Cartão
+    - Criar Token para Conta Bancária
+    - Recuperar
 
 ## Licença
 
