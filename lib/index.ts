@@ -2,6 +2,7 @@ export * from './buyer';
 export * from './endpoint-error';
 export * from './endpoint';
 export * from './marketplace';
+export * from './resource';
 export * from './seller';
 export * from './transaction';
 export * from './zoop';

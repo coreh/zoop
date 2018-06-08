@@ -3,6 +3,7 @@ import FetchPonyfill from 'fetch-ponyfill';
 import { btoa } from 'isomorphic-base64';
 import QueryString from 'qs';
 import { EndpointError } from './endpoint-error';
+import { AnyResource, Resource } from './resource';
 
 const { fetch, Headers } = FetchPonyfill();
 
@@ -13,7 +14,7 @@ enum StatusClass {
     ServerError = 5,
 }
 
-export abstract class Endpoint<T> {
+export abstract class Endpoint<T extends Resource = AnyResource> {
     constructor(readonly base: string, readonly apiKey: string) { }
 
     private static statusClass(statusCode: number): StatusClass {
@@ -28,7 +29,7 @@ export abstract class Endpoint<T> {
         }
     }
 
-    protected async request<U = T>(method: string, payload?: object, route: string = ''): Promise<U | undefined> {
+    protected async request<U extends Resource = T>(method: string, payload?: object, route: string = ''): Promise<U | undefined> {
         const headers = new Headers({
             Authorization: `Basic ${btoa(`${this.apiKey}:${this.apiKey}`)}`,
         });
@@ -64,7 +65,7 @@ export abstract class Endpoint<T> {
         }
     }
 
-    protected async *iterate<U = T>(payload?: object, route: string = '') {
+    protected async *iterate<U extends Resource = T>(payload?: object, route: string = '') {
         let offset = 0;
         let data;
         do {

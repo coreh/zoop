@@ -2,11 +2,11 @@ import { Endpoint } from './endpoint';
 import { MarketplaceEndpoint } from './marketplace';
 import { Resource } from './resource';
 
-type PaymentType = 'boleto' | 'credit' | 'debit' | 'wallet';
+export type PaymentType = 'boleto' | 'credit' | 'debit' | 'wallet';
 
-type VerificationStatus = 'unchecked' | 'pass';
+export type VerificationStatus = 'unchecked' | 'pass';
 
-interface Card extends Resource {
+export interface Card extends Resource {
     resource: 'card';
     description: string | null;
     card_brand: string;
@@ -28,7 +28,7 @@ interface Card extends Resource {
     };
 }
 
-interface Boleto extends Resource {
+export interface Boleto extends Resource {
     resource: 'boleto';
     description: string;
     reference_number: string;
