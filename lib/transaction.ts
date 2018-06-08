@@ -1,55 +1,10 @@
+import { Boleto } from './boleto';
+import { Card } from './card';
 import { Endpoint } from './endpoint';
 import { MarketplaceEndpoint } from './marketplace';
 import { Resource } from './resource';
 
 export type PaymentType = 'boleto' | 'credit' | 'debit' | 'wallet';
-
-export type VerificationStatus = 'unchecked' | 'pass';
-
-export interface Card extends Resource {
-    resource: 'card';
-    description: string | null;
-    card_brand: string;
-    first4_digits: string;
-    last4_digits: string;
-    expiration_month: string;
-    expiration_year: string;
-    holder_name: string;
-    is_active: boolean;
-    is_valid: boolean;
-    is_verified: boolean;
-    customer: string;
-    fingerprint: string;
-    address: any | null;
-    verification_checklist: {
-        postal_code_check: VerificationStatus;
-        security_code_check: VerificationStatus;
-        address_line1_check: VerificationStatus;
-    };
-}
-
-export interface Boleto extends Resource {
-    resource: 'boleto';
-    description: string;
-    reference_number: string;
-    document_number: string;
-    expiration_date: string;
-    recipient: string;
-    bank_code: string;
-    customer: string | null;
-    address: string | null;
-    sequence: string;
-    url: string;
-    accepted: false;
-    printed: false;
-    downloaded: false;
-    fingerprint: null;
-    paid_at: null;
-    barcode: string;
-    metadata: any;
-    created_at: string;
-    updated_at: string;
-}
 
 export interface TransactionCreationInfo {
     amount: string;

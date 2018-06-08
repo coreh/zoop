@@ -1,7 +1,9 @@
+import { Boleto } from './boleto';
 import { Buyer } from './buyer';
+import { Card } from './card';
 import { Marketplace } from './marketplace';
 import { Seller } from './seller';
-import { Boleto, Card, Transaction } from './transaction';
+import { Transaction } from './transaction';
 
 export interface Resource {
     id: string;
