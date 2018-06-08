@@ -1,8 +1,63 @@
 import { Endpoint } from './endpoint';
 import { Marketplace } from './marketplace';
 
-export interface TransactionCreationInfo {
+type PaymentType = 'boleto' | 'credit' | 'debit' | 'wallet';
 
+type VerificationStatus = 'unchecked' | 'pass';
+
+interface CardInfo {
+    id: string;
+    resource: 'card';
+    description: string | null;
+    card_brand: string;
+    first4_digits: string;
+    last4_digits: string;
+    expiration_month: string;
+    expiration_year: string;
+    holder_name: string;
+    is_active: boolean;
+    is_valid: boolean;
+    is_verified: boolean;
+    customer: string;
+    fingerprint: string;
+    address: any | null;
+    verification_checklist: {
+        postal_code_check: VerificationStatus;
+        security_code_check: VerificationStatus;
+        address_line1_check: VerificationStatus;
+    };
+}
+
+interface BoletoInfo {
+    id: string;
+    resource: 'boleto';
+    description: string;
+    reference_number: string;
+    document_number: string;
+    expiration_date: string;
+    recipient: string;
+    bank_code: string;
+    customer: string | null;
+    address: string | null;
+    sequence: string;
+    url: string;
+    accepted: false;
+    printed: false;
+    downloaded: false;
+    fingerprint: null;
+    paid_at: null;
+    uri: string;
+    barcode: string;
+    metadata: any;
+    created_at: string;
+    updated_at: string;
+}
+
+export interface TransactionCreationInfo {
+    amount: string;
+    currency: string;
+    on_behalf_of: string;
+    payment_type: PaymentType;
 }
 
 export interface TransactionInfo {
@@ -25,7 +80,7 @@ export interface TransactionInfo {
     on_behalf_of: string;
     customer: any | null;
     statement_descriptor: string;
-    payment_method: any | null;
+    payment_method: CardInfo | BoletoInfo | null;
     point_of_sale: any | null;
     installment_plan: any | null;
     refunded: boolean;
