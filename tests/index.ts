@@ -1,4 +1,4 @@
-import Zoop, { Marketplace } from '../lib';
+import Zoop, { Marketplace, TransactionCreationInfo } from '../lib';
 
 jest.setTimeout(20_000);
 
@@ -23,7 +23,7 @@ const TEST_BUYER_CREATION_INFO = {
         neighborhood: 'Test',
     },
 };
-const TEST_TRANSACTION_BOLETO_CREATION_INFO = {
+const TEST_TRANSACTION_BOLETO_CREATION_INFO: TransactionCreationInfo = {
     amount: '1000',
     currency: 'BRL',
     on_behalf_of: TEST_SELLER_ID,
