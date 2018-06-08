@@ -1,11 +1,12 @@
 import { Endpoint } from './endpoint';
 import { MarketplaceEndpoint } from './marketplace';
+import { Resource } from './resource';
 
 export interface SellerCreationInfo {
+
 }
 
-export interface Seller {
-    id: string;
+export interface Seller extends Resource {
     resource: 'seller';
 }
 

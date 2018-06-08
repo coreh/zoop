@@ -1,12 +1,12 @@
 import { Endpoint } from './endpoint';
 import { MarketplaceEndpoint } from './marketplace';
+import { Resource } from './resource';
 
 type PaymentType = 'boleto' | 'credit' | 'debit' | 'wallet';
 
 type VerificationStatus = 'unchecked' | 'pass';
 
-interface Card {
-    id: string;
+interface Card extends Resource {
     resource: 'card';
     description: string | null;
     card_brand: string;
@@ -28,8 +28,7 @@ interface Card {
     };
 }
 
-interface Boleto {
-    id: string;
+interface Boleto extends Resource {
     resource: 'boleto';
     description: string;
     reference_number: string;
@@ -46,7 +45,6 @@ interface Boleto {
     downloaded: false;
     fingerprint: null;
     paid_at: null;
-    uri: string;
     barcode: string;
     metadata: any;
     created_at: string;
@@ -60,8 +58,7 @@ export interface TransactionCreationInfo {
     payment_type: PaymentType;
 }
 
-export interface Transaction {
-    id: string;
+export interface Transaction extends Resource {
     resource: 'transaction';
     status: string;
     amount: string;
@@ -92,7 +89,6 @@ export interface Transaction {
     location_longitude: string | null;
     individual: any | null;
     business: any | null;
-    uri: string;
     metadata: any;
     expected_on: string;
     created_at: string;

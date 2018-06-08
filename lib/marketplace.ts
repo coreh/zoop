@@ -1,11 +1,11 @@
 import { Buyer, BuyerCreationInfo, BuyerEndpoint } from './buyer';
 import { Endpoint } from './endpoint';
+import { Resource } from './resource';
 import { Seller, SellerCreationInfo, SellerEndpoint } from './seller';
 import { Transaction, TransactionCreationInfo, TransactionEndpoint } from './transaction';
 import { Zoop } from './zoop';
 
-export interface Marketplace {
-    id: string;
+export interface Marketplace extends Resource {
     resource: 'marketplace';
     name: string;
     type: string;
@@ -28,7 +28,6 @@ export interface Marketplace {
     debit_enabled: boolean;
     default_debit: any | null;
     default_credit: any | null;
-    uri: string;
     created_at: string;
     updated_at: string;
     metadata: any;

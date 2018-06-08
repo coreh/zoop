@@ -1,5 +1,6 @@
 import { Endpoint } from './endpoint';
 import { MarketplaceEndpoint } from './marketplace';
+import { Resource } from './resource';
 
 export interface BuyerCreationInfo {
     first_name: string;
@@ -23,10 +24,9 @@ export interface BuyerCreationInfo {
     metadata?: any;
 }
 
-export interface Buyer {
-    id: string;
-    status: string;
+export interface Buyer extends Resource {
     resource: 'buyer';
+    status: string;
     account_balance: string;
     current_balance: string;
     first_name: string;
@@ -52,7 +52,6 @@ export interface Buyer {
     default_debit: any | null;
     default_credit: any | null;
     default_receipt_delivery_method: any | null;
-    uri: string;
     metadata: any;
 }
 
