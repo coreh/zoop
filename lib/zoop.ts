@@ -9,12 +9,12 @@ export class Zoop extends Endpoint {
         super(API_BASE, apiKey);
     }
 
-    public async request<T extends Resource = AnyResource>(method: string, payload?: object, route?: string) {
-        return super.request<T>(method, payload, route);
+    public async request<T extends Resource = AnyResource>(method: string, route?: string, payload?: object) {
+        return super.request<T>(method, route, payload);
     }
 
-    public iterate<T extends Resource = AnyResource>(payload?: object, route?: string) {
-        return super.iterate<T>(payload, route);
+    public iterate<T extends Resource = AnyResource>(route?: string, payload?: object) {
+        return super.iterate<T>(route, payload);
     }
 
     marketplace(id: string) {

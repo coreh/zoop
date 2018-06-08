@@ -29,7 +29,7 @@ export abstract class Endpoint<T extends Resource = AnyResource> {
         }
     }
 
-    protected async request<U extends Resource = T>(method: string, payload?: object, route: string = ''): Promise<U | undefined> {
+    protected async request<U extends Resource = T>(method: string, route: string = '', payload?: object): Promise<U | undefined> {
         const headers = new Headers({
             Authorization: `Basic ${btoa(`${this.apiKey}:${this.apiKey}`)}`,
         });
@@ -65,11 +65,11 @@ export abstract class Endpoint<T extends Resource = AnyResource> {
         }
     }
 
-    protected async *iterate<U extends Resource = T>(payload?: object, route: string = '') {
+    protected async *iterate<U extends Resource = T>(route: string = '', payload?: object) {
         let offset = 0;
         let data;
         do {
-            data = await this.request('GET', { ...payload, offset }, route);
+            data = await this.request('GET', route, { ...payload, offset });
             for (const item of data.items) {
                 yield item as U;
             }

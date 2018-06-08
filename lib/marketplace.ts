@@ -55,26 +55,26 @@ export class MarketplaceEndpoint extends Endpoint<Marketplace> {
     }
 
     listBuyers(query?: object) {
-        return this.iterate<Buyer>(query, '/buyers');
+        return this.iterate<Buyer>('/buyers', query);
     }
 
     listSellers(query?: object) {
-        return this.iterate<Seller>(query, '/sellers');
+        return this.iterate<Seller>('/sellers', query);
     }
 
     listTransactions(query?: object) {
-        return this.iterate<Transaction>(query, '/transactions');
+        return this.iterate<Transaction>('/transactions', query);
     }
 
     async createBuyer(buyerInfo: BuyerCreationInfo) {
-        return this.request('POST', buyerInfo, `/buyers`) as Promise<Buyer>;
+        return this.request('POST', '/buyers', buyerInfo) as Promise<Buyer>;
     }
 
-    async createSeller(buyerInfo: SellerCreationInfo) {
-        return this.request('POST', buyerInfo, `/sellers`) as Promise<Buyer>;
+    async createSeller(sellerInfo: SellerCreationInfo) {
+        return this.request('POST', '/sellers', sellerInfo) as Promise<Buyer>;
     }
 
     async createTransaction(transactionInfo: TransactionCreationInfo) {
-        return this.request('POST', transactionInfo, `/transactions`) as Promise<Transaction>;
+        return this.request('POST', '/transactions', transactionInfo) as Promise<Transaction>;
     }
 }
