@@ -1,5 +1,5 @@
 import { Endpoint } from './endpoint';
-import { Marketplace } from './marketplace';
+import { MarketplaceEndpoint } from './marketplace';
 
 export interface BuyerCreationInfo {
     first_name: string;
@@ -23,7 +23,7 @@ export interface BuyerCreationInfo {
     metadata?: any;
 }
 
-export interface BuyerInfo {
+export interface Buyer {
     id: string;
     status: string;
     resource: 'buyer';
@@ -56,8 +56,8 @@ export interface BuyerInfo {
     metadata: any;
 }
 
-export class Buyer extends Endpoint<BuyerInfo> {
-    constructor(marketplace: Marketplace, id: string) {
+export class BuyerEndpoint extends Endpoint<Buyer> {
+    constructor(marketplace: MarketplaceEndpoint, id: string) {
         super(marketplace.base + `/buyers/${id}`, marketplace.apiKey);
     }
 

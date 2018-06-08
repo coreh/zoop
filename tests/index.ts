@@ -1,4 +1,4 @@
-import Zoop, { Marketplace, TransactionCreationInfo } from '../lib';
+import Zoop, { MarketplaceEndpoint, TransactionCreationInfo } from '../lib';
 
 jest.setTimeout(20_000);
 
@@ -31,7 +31,7 @@ const TEST_TRANSACTION_BOLETO_CREATION_INFO: TransactionCreationInfo = {
 };
 
 let zoop: Zoop;
-let marketplace: Marketplace;
+let marketplace: MarketplaceEndpoint;
 
 beforeAll(() => {
     zoop = new Zoop(TEST_API_KEY);

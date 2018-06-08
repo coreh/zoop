@@ -1,16 +1,16 @@
 import { Endpoint } from './endpoint';
-import { Marketplace } from './marketplace';
+import { MarketplaceEndpoint } from './marketplace';
 
 export interface SellerCreationInfo {
 }
 
-export interface SellerInfo {
+export interface Seller {
     id: string;
     resource: 'seller';
 }
 
-export class Seller extends Endpoint<SellerInfo> {
-    constructor(marketplace: Marketplace, id: string) {
+export class SellerEndpoint extends Endpoint<Seller> {
+    constructor(marketplace: MarketplaceEndpoint, id: string) {
         super(marketplace.base + `/sellers/${id}`, marketplace.apiKey);
     }
 

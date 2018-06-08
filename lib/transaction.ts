@@ -1,11 +1,11 @@
 import { Endpoint } from './endpoint';
-import { Marketplace } from './marketplace';
+import { MarketplaceEndpoint } from './marketplace';
 
 type PaymentType = 'boleto' | 'credit' | 'debit' | 'wallet';
 
 type VerificationStatus = 'unchecked' | 'pass';
 
-interface CardInfo {
+interface Card {
     id: string;
     resource: 'card';
     description: string | null;
@@ -28,7 +28,7 @@ interface CardInfo {
     };
 }
 
-interface BoletoInfo {
+interface Boleto {
     id: string;
     resource: 'boleto';
     description: string;
@@ -60,7 +60,7 @@ export interface TransactionCreationInfo {
     payment_type: PaymentType;
 }
 
-export interface TransactionInfo {
+export interface Transaction {
     id: string;
     resource: 'transaction';
     status: string;
@@ -80,7 +80,7 @@ export interface TransactionInfo {
     on_behalf_of: string;
     customer: any | null;
     statement_descriptor: string;
-    payment_method: CardInfo | BoletoInfo | null;
+    payment_method: Card | Boleto | null;
     point_of_sale: any | null;
     installment_plan: any | null;
     refunded: boolean;
@@ -102,8 +102,8 @@ export interface TransactionInfo {
     payment_authorization: any;
 }
 
-export class Transaction extends Endpoint<TransactionInfo> {
-    constructor(marketplace: Marketplace, id: string) {
+export class TransactionEndpoint extends Endpoint<Transaction> {
+    constructor(marketplace: MarketplaceEndpoint, id: string) {
         super(marketplace.base + `/transactions/${id}`, marketplace.apiKey);
     }
 

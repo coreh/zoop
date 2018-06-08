@@ -1,10 +1,10 @@
-import { Buyer, BuyerCreationInfo, BuyerInfo } from './buyer';
+import { Buyer, BuyerCreationInfo, BuyerEndpoint } from './buyer';
 import { Endpoint } from './endpoint';
-import { Seller, SellerCreationInfo, SellerInfo } from './seller';
-import { Transaction, TransactionCreationInfo, TransactionInfo } from './transaction';
+import { Seller, SellerCreationInfo, SellerEndpoint } from './seller';
+import { Transaction, TransactionCreationInfo, TransactionEndpoint } from './transaction';
 import { Zoop } from './zoop';
 
-export interface MarketplaceInfo {
+export interface Marketplace {
     id: string;
     resource: 'marketplace';
     name: string;
@@ -34,21 +34,21 @@ export interface MarketplaceInfo {
     metadata: any;
 }
 
-export class Marketplace extends Endpoint<MarketplaceInfo> {
+export class MarketplaceEndpoint extends Endpoint<Marketplace> {
     constructor(zoop: Zoop, id: string) {
         super(zoop.base + `/marketplaces/${id}`, zoop.apiKey);
     }
 
-    buyer(id: string): Buyer {
-        return new Buyer(this, id);
+    buyer(id: string): BuyerEndpoint {
+        return new BuyerEndpoint(this, id);
     }
 
     seller(id: string) {
-        return new Seller(this, id);
+        return new SellerEndpoint(this, id);
     }
 
     transaction(id: string) {
-        return new Transaction(this, id);
+        return new TransactionEndpoint(this, id);
     }
 
     async get() {
@@ -56,26 +56,26 @@ export class Marketplace extends Endpoint<MarketplaceInfo> {
     }
 
     listBuyers(query?: object) {
-        return this.iterate<BuyerInfo>(query, '/buyers');
+        return this.iterate<Buyer>(query, '/buyers');
     }
 
     listSellers(query?: object) {
-        return this.iterate<SellerInfo>(query, '/sellers');
+        return this.iterate<Seller>(query, '/sellers');
     }
 
     listTransactions(query?: object) {
-        return this.iterate<TransactionInfo>(query, '/transactions');
+        return this.iterate<Transaction>(query, '/transactions');
     }
 
     async createBuyer(buyerInfo: BuyerCreationInfo) {
-        return this.request('POST', buyerInfo, `/buyers`) as Promise<BuyerInfo>;
+        return this.request('POST', buyerInfo, `/buyers`) as Promise<Buyer>;
     }
 
     async createSeller(buyerInfo: SellerCreationInfo) {
-        return this.request('POST', buyerInfo, `/sellers`) as Promise<BuyerInfo>;
+        return this.request('POST', buyerInfo, `/sellers`) as Promise<Buyer>;
     }
 
     async createTransaction(transactionInfo: TransactionCreationInfo) {
-        return this.request('POST', transactionInfo, `/transactions`) as Promise<TransactionInfo>;
+        return this.request('POST', transactionInfo, `/transactions`) as Promise<Transaction>;
     }
 }

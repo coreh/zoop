@@ -1,5 +1,5 @@
 import { Endpoint } from './endpoint';
-import { Marketplace } from './marketplace';
+import { MarketplaceEndpoint } from './marketplace';
 
 const API_BASE = 'https://api.zoop.ws/v1';
 
@@ -9,6 +9,6 @@ export class Zoop extends Endpoint<never> {
     }
 
     marketplace(id: string) {
-        return new Marketplace(this, id);
+        return new MarketplaceEndpoint(this, id);
     }
 }
