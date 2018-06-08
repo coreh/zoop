@@ -48,7 +48,8 @@ describe('marketplace', () => {
 
     it('should throw when attempting to access another marketplace', async () => {
         const marketplaceInfoPromise = zoop.marketplace(TEST_NONEXISTENT_ID).get();
-        expect(marketplaceInfoPromise).rejects.toThrow();
+        expect.assertions(1);
+        await expect(marketplaceInfoPromise).rejects.toBeInstanceOf(Error);
     });
 });
 
