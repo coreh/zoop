@@ -11,6 +11,7 @@ export interface TransactionCreationInfo {
     currency: string;
     on_behalf_of: string;
     payment_type: PaymentType;
+    customer?: string;
 }
 
 export interface Transaction extends Resource {
