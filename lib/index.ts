@@ -1,3 +1,4 @@
+export * from './boleto';
 export * from './buyer';
 export * from './endpoint-error';
 export * from './endpoint';
