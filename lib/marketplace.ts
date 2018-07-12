@@ -36,7 +36,7 @@ export interface Marketplace extends Resource {
 
 export class MarketplaceEndpoint extends Endpoint<Marketplace> {
     constructor(zoop: Zoop, id: string) {
-        super(zoop.base + `/marketplaces/${id}`, zoop.apiKey);
+        super(zoop.base + `/marketplaces/${id}`, zoop.apiKey, zoop.apiSecret);
     }
 
     buyer(id: string): BuyerEndpoint {

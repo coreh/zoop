@@ -57,7 +57,7 @@ export interface Buyer extends Resource {
 
 export class BuyerEndpoint extends Endpoint<Buyer> {
     constructor(marketplace: MarketplaceEndpoint, id: string) {
-        super(marketplace.base + `/buyers/${id}`, marketplace.apiKey);
+        super(marketplace.base + `/buyers/${id}`, marketplace.apiKey, marketplace.apiSecret);
     }
 
     async get() {

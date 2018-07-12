@@ -12,7 +12,7 @@ export interface Seller extends Resource {
 
 export class SellerEndpoint extends Endpoint<Seller> {
     constructor(marketplace: MarketplaceEndpoint, id: string) {
-        super(marketplace.base + `/sellers/${id}`, marketplace.apiKey);
+        super(marketplace.base + `/sellers/${id}`, marketplace.apiKey, marketplace.apiSecret);
     }
 
     async get() {

@@ -44,7 +44,7 @@ export type Token = BankAccountToken | CardToken;
 
 export class TokenEndpoint extends Endpoint<Token> {
     constructor(marketplace: MarketplaceEndpoint, id: string) {
-        super(marketplace.base + `/tokens/${id}`, marketplace.apiKey);
+        super(marketplace.base + `/tokens/${id}`, marketplace.apiKey, marketplace.apiSecret);
     }
 
     async get() {

@@ -56,7 +56,7 @@ export interface Transaction extends Resource {
 
 export class TransactionEndpoint extends Endpoint<Transaction> {
     constructor(marketplace: MarketplaceEndpoint, id: string) {
-        super(marketplace.base + `/transactions/${id}`, marketplace.apiKey);
+        super(marketplace.base + `/transactions/${id}`, marketplace.apiKey, marketplace.apiSecret);
     }
 
     async get() {

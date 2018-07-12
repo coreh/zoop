@@ -15,7 +15,7 @@ enum StatusClass {
 }
 
 export abstract class Endpoint<T extends Resource = AnyResource> {
-    constructor(readonly base: string, readonly apiKey: string) { }
+    constructor(readonly base: string, readonly apiKey: string, readonly apiSecret: string) { }
 
     private static statusClass(statusCode: number): StatusClass {
         return Math.floor(statusCode / 100);
@@ -31,7 +31,7 @@ export abstract class Endpoint<T extends Resource = AnyResource> {
 
     public async request<U extends Resource = T>(method: string, route: string = '', payload?: object): Promise<U | undefined> {
         const headers = new Headers({
-            Authorization: `Basic ${btoa(`${this.apiKey}:${this.apiKey}`)}`,
+            Authorization: `Basic ${btoa(`${this.apiKey}:${this.apiSecret}`)}`,
         });
 
         let uri;
